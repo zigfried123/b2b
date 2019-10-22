@@ -1,4 +1,5 @@
 <?php
+
 namespace models\services;
 
 use models\Mysql;
@@ -18,7 +19,7 @@ class OrderService
 
             return $orderId;
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             var_dump($e);
 
             Mysql::$db->rollback();

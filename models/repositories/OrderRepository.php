@@ -1,4 +1,5 @@
 <?php
+
 namespace models\repositories;
 
 use models\entities\Order;
@@ -9,7 +10,7 @@ class OrderRepository extends EntityRepository
     public function getOrderById($id)
     {
         $q = Mysql::$db->prepare("SELECT * FROM `{$this->tableName}` WHERE id=:id");
-        $q->execute(['id'=>$id]);
+        $q->execute(['id' => $id]);
 
         return $q->fetch(\PDO::FETCH_ASSOC);
     }

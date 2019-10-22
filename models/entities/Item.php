@@ -1,4 +1,5 @@
 <?php
+
 namespace models\entities;
 
 class Item extends Entity

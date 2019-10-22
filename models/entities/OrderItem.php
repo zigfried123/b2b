@@ -1,4 +1,5 @@
 <?php
+
 namespace models\entities;
 
 class OrderItem extends Entity

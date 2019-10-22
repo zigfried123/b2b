@@ -12,21 +12,20 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
-try
-{
+try {
     $get_items_route = new Route(
         '/shop/get-items',
-        array('controller' => 'ShopController', 'method'=>'getItems')
+        array('controller' => 'ShopController', 'method' => 'getItems')
     );
 
     $make_order_route = new Route(
         '/shop/make-order',
-        array('controller' => 'ShopController', 'method'=>'makeOrder')
+        array('controller' => 'ShopController', 'method' => 'makeOrder')
     );
 
     $pay_order_route = new Route(
         '/shop/pay-order',
-        array('controller' => 'ShopController', 'method'=>'payOrder')
+        array('controller' => 'ShopController', 'method' => 'payOrder')
     );
 
     $routes = new RouteCollection();
@@ -42,15 +41,13 @@ try
 
     $parameters = $matcher->match($context->getPathInfo());
 
-    Mysql::connect(compact('server','user','pass','database'));
+    Mysql::connect(compact('server', 'user', 'pass', 'database'));
 
-    $controller = 'controllers\\'.$parameters['controller'];
+    $controller = 'controllers\\' . $parameters['controller'];
     $method = $parameters['method'];
 
     echo (new $controller())->$method();
 
-}
-catch (ResourceNotFoundException $e)
-{
+} catch (ResourceNotFoundException $e) {
     echo $e->getMessage();
 }

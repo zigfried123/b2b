@@ -1,4 +1,5 @@
 <?php
+
 namespace models;
 
 use models\entities\Order;
@@ -20,7 +21,7 @@ class OrderNewState
 
         $repository->save($order);
 
-        foreach($itemIds as $itemId){
+        foreach ($itemIds as $itemId) {
             $repository = new OrderItemRepository();
 
             $model = new OrderItem();

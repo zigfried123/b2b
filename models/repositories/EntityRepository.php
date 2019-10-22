@@ -1,4 +1,5 @@
 <?php
+
 namespace models\repositories;
 
 use models\entities\Entity;
@@ -13,8 +14,8 @@ class EntityRepository
 
     public function __construct()
     {
-        $className = end(explode('\\',get_called_class()));
-        $classNameWithoutRepository = str_replace('Repository','',$className);
+        $className = end(explode('\\', get_called_class()));
+        $classNameWithoutRepository = str_replace('Repository', '', $className);
         $this->tableName = strtolower($classNameWithoutRepository);
     }
 
@@ -42,11 +43,11 @@ class EntityRepository
 
     public function save(Entity $entity)
     {
-        $entity = (array) $entity;
+        $entity = (array)$entity;
 
-        $keys = implode(',',array_keys($entity));
+        $keys = implode(',', array_keys($entity));
 
-        $vals = implode(',',array_map(function($v){
+        $vals = implode(',', array_map(function ($v) {
             return ":$v";
         }, array_keys($entity)));
 
@@ -63,7 +64,7 @@ class EntityRepository
 
         $q->execute();
 
-        return $q->fetch()['id']+1;
+        return $q->fetch()['id'] + 1;
     }
 
 }

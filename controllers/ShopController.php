@@ -1,4 +1,5 @@
 <?php
+
 namespace controllers;
 
 use models\repositories\ItemRepository;
@@ -16,17 +17,17 @@ class ShopController
     {
         $repository = ItemRepository::getInstance();
 
-        if($_SERVER["REQUEST_METHOD"] != 'GET'){
-            return json_encode(['status'=>'error', 'code'=>403, 'message'=>'Forbidden']);
+        if ($_SERVER["REQUEST_METHOD"] != 'GET') {
+            return json_encode(['status' => 'error', 'code' => 403, 'message' => 'Forbidden']);
         }
 
-        return json_encode(['status'=>'ok','response'=>$repository->getAll()]);
+        return json_encode(['status' => 'ok', 'response' => $repository->getAll()]);
     }
 
     public function makeOrder()
     {
-        if($_SERVER["REQUEST_METHOD"] != 'POST'){
-            return json_encode(['status'=>'error', 'code'=>403, 'message'=>'Forbidden']);
+        if ($_SERVER["REQUEST_METHOD"] != 'POST') {
+            return json_encode(['status' => 'error', 'code' => 403, 'message' => 'Forbidden']);
         }
 
         $order = new OrderService();
@@ -39,8 +40,8 @@ class ShopController
 
     public function payOrder()
     {
-        if($_SERVER["REQUEST_METHOD"] != 'PUT'){
-            return json_encode(['status'=>'error', 'code'=>403, 'message'=>'Forbidden']);
+        if ($_SERVER["REQUEST_METHOD"] != 'PUT') {
+            return json_encode(['status' => 'error', 'code' => 403, 'message' => 'Forbidden']);
         }
 
         $order = new OrderService();
@@ -59,7 +60,7 @@ class ShopController
     {
         $repository = ItemRepository::getInstance();
 
-        if($repository->isCountNull()) {
+        if ($repository->isCountNull()) {
 
             $items = (new ItemService())->generateItems();
 

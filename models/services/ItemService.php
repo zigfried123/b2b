@@ -1,4 +1,5 @@
 <?php
+
 namespace models\services;
 
 use models\entities\Item;
@@ -16,7 +17,7 @@ class ItemService
     {
         $i = 0;
 
-        while(++$i <= self::MAX_INDEX){
+        while (++$i <= self::MAX_INDEX) {
 
             $item = new Item($i, "item$i", mt_rand(self::BEGIN_PRICE, self::END_PRICE));
 
