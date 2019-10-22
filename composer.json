@@ -1,0 +1,14 @@
+{
+    "require": {
+        "symfony/routing": "^4.3",
+        "symfony/http-foundation": "^4.3",
+        "friendsofsymfony/rest-bundle": "^2.6"
+    },
+    "autoload" : {
+        "files": [
+            "config/mysql.php"
+        ],
+        "psr-4" : {"controllers\\" : "controllers", "models\\" : "models"},
+        "ext-json": "*"
+    },
+}
