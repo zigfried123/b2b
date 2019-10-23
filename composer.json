@@ -8,7 +8,7 @@
         "files": [
             "config/mysql.php"
         ],
-        "psr-4" : {"controllers\\" : "controllers", "models\\" : "models"},
+        "psr-4" : {"controllers\\" : "controllers", "models\\" : "models", "migrations\\" : "migrations"},
         "ext-json": "*"
-    },
+    }
 }

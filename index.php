@@ -4,6 +4,7 @@ require_once './config/mysql.php';
 
 require_once './vendor/autoload.php';
 
+use models\Console;
 use models\Mysql;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
@@ -11,6 +12,20 @@ use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+
+Mysql::connect(compact('server', 'user', 'pass', 'database'));
+
+try {
+    $q = Mysql::$db->query("SELECT * FROM `migrations` LIMIT 1");
+} catch (Exception $e) {
+    $q = Mysql::$db->query('CREATE TABLE `migrations` (`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255))');
+}
+
+if (!empty($argv)) {
+
+    Console::getInstance($argv)->execute();
+
+}
 
 try {
     $get_items_route = new Route(
@@ -41,8 +56,6 @@ try {
 
     $parameters = $matcher->match($context->getPathInfo());
 
-    Mysql::connect(compact('server', 'user', 'pass', 'database'));
-
     $controller = 'controllers\\' . $parameters['controller'];
     $method = $parameters['method'];
 
@@ -51,3 +64,4 @@ try {
 } catch (ResourceNotFoundException $e) {
     echo $e->getMessage();
 }
+
